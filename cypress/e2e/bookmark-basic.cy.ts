@@ -134,6 +134,37 @@ describe("Basic Bookmark Functionality Tests", () => {
         }
       });
     });
+
+    it("should bookmark a job and show it in the saved list, then unbookmark it", () => {
+      cy.url().then((url) => {
+        if (!url.includes("/login")) {
+          // Find a job card with a bookmark button
+          cy.get('[data-testid="bookmark-button"]').first().as("bookmarkBtn");
+
+          // Bookmark the job
+          cy.get("@bookmarkBtn").click();
+
+          // Optionally check aria-label or icon change
+          cy.get("@bookmarkBtn")
+            .should("have.attr", "aria-label")
+            .and("match", /remove/i);
+
+          // Go to the saved/bookmark page
+          cy.visit("/bookmark");
+
+          // Check that at least one job card is present
+          cy.get(".job-card, [data-testid='job-card']").should("exist");
+
+          // Unbookmark the job
+          cy.get('[data-testid="bookmark-button"]').first().click();
+
+          // After unbookmarking, the job should be removed from the saved list
+          cy.get(".job-card, [data-testid='job-card']").should("not.exist");
+        } else {
+          cy.log("Authentication required for this test");
+        }
+      });
+    });
   });
 
   describe("Error Handling", () => {

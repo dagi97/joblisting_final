@@ -137,8 +137,8 @@ _Screenshot showing Jest unit test results with all tests passing. Includes comp
 
 #### **Cypress E2E Tests Results**
 
-![Cypress Tests](./public/screenshots/cypress-tests.png)
-![Cypress Tests](./public/screenshots/cypress-tests2.png)
+![Cypress Tests](./public/screenshots/cypress1.png)
+![Cypress Tests](./public/screenshots/cypress2.png)
 
 _Screenshot showing Cypress end-to-end test results with comprehensive bookmark functionality testing._
 
